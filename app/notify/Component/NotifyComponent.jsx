@@ -29,7 +29,7 @@ export default function Home() {
 
     setLoading(true)
 
-    const res = await fetNotification()
+    const res = await fetNotification(lastDoc)
 
     const json = await res.json()
     const data = json.data
