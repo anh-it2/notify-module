@@ -1,7 +1,8 @@
 // NotificationCard.jsx
-import { markAsRead } from '@/lib/notify/api';
+
 import React, { forwardRef } from 'react';
 import { LuUser } from 'react-icons/lu';
+import { markAsRead } from '../lib/notify/api';
 
 const NotificationCard = forwardRef(({ message, setUnReadNotify, onMarkAsRead }, ref) => {
 

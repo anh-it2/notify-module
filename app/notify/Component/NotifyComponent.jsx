@@ -7,8 +7,9 @@ import NotificationList from "./NotificationList";
 import { collection, onSnapshot } from "firebase/firestore";
 import { MdNotificationsActive } from "react-icons/md";
 import '../notify.css'
-import { db, app } from "@/lib/notify/firebase"
-import { fetNotification, saveNotification } from '@/lib/notify/api';
+import { fetNotification, saveNotification } from '../lib/notify/api';
+import { db,app } from '../lib/notify/firebase';
+
 
 export default function Home() {
 

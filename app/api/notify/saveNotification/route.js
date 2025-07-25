@@ -1,5 +1,5 @@
 
-import { db } from "@/lib/notify/firebase"
+import { db } from "@/app/notify/lib/notify/firebase"
 import { collection, doc, setDoc, Timestamp } from "firebase/firestore"
 import { NextResponse } from "next/server"
 

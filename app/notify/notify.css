@@ -17,7 +17,6 @@
   scrollbar-width: 6px;
   scrollbar-color: #ccc transparent;
   scroll-behavior: smooth;
-  z-index: 999;
 }
 .notificationList:focus{
   outline: none;
@@ -34,7 +33,7 @@
   width: 100%;
 }
 .infor{
-  width: 190px;
+  width: 180px;
 }
 .title{
   color: black;
@@ -139,6 +138,9 @@
   height: 10px;
   border-radius: 50%;
   background-color: red;
+  display: inline-block;
+  margin-right: 0px;
+  flex-shrink: 0;
 }
 .unread {
   background-color: #e6f0ff;
