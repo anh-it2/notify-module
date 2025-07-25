@@ -31,13 +31,22 @@
   padding: 4px;
   border-radius: 10px;
   height: 60px;
+  width: 100%;
+}
+.infor{
+  width: 190px;
 }
 .title{
   color: black;
   font-weight: bold;
+  width: 100%;
 }
 .body{
-  font-size: 12px
+  font-size: 12px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .image{
   width: 50px;

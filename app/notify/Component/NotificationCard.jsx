@@ -19,7 +19,7 @@ const NotificationCard = forwardRef(({ message, setUnReadNotify, onMarkAsRead },
     <div className={`notificationCard ${message.read ? 'read' : 'unread'}`} ref={ref} onClick={() => handleClickNotify(message.id)}>
       <div className='circle'></div>
       {message.image ? <img src={message.image} alt="notification" className='image'/> : <LuUser className='icon-user'/>}
-      <div>
+      <div className='infor'>
         <div className="title">{message.title}</div>
         <div className="body">{message.body}</div>
       </div>
