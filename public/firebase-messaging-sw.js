@@ -31,7 +31,7 @@ messaging.onBackgroundMessage(async (payload) => {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon: payload.notification.image
+    image: payload.notification.image
   };
 
   await fetch(`${self.location.origin}/api/notify/saveNotification`,{
@@ -42,7 +42,7 @@ messaging.onBackgroundMessage(async (payload) => {
     body: JSON.stringify({
       title: notificationTitle,
       body: notificationOptions.body,
-      image: notificationOptions.icon
+      image: notificationOptions.image ?? null
     })
   })
 

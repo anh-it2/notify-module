@@ -13,7 +13,8 @@ export async function POST(req) {
         id: docRef.id,
         title: request.title,
         body: request.body,
-        image: request.image,
+        image: request.image ?? null,
+        link: `/tasks/${docRef.id}`,
         read: false,
         createdAt: Timestamp.now()
     })

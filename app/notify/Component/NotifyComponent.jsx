@@ -9,6 +9,7 @@ import { MdNotificationsActive } from "react-icons/md";
 import '../notify.css'
 import { fetNotification, saveNotification } from '../lib/notify/api';
 import { db,app } from '../lib/notify/firebase';
+import { useRouter } from 'next/navigation';
 
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
   const observer = useRef()
   const scrollContainer = useRef()
   const countRef = useRef(-1)
+  const router = useRouter()
 
   const [notify, setNotify] = useState([])
   const [lastDoc, setLastDoc] = useState(null)
@@ -30,11 +32,20 @@ export default function Home() {
 
     setLoading(true)
 
-    const res = await fetNotification(lastDoc)
+    // const params = new URLSearchParams({
+    //   page: 1,
+    //   size: 10,
+    //   sortBy: 'createdAt',
+    //   sortDirection: 'DESC'
+    // }).toString()
 
+    // console.log(params)
+    // const res = await fetch(`https://notify-app-cj9d.onrender.com/notifications?${params}`)
+
+    const res = await fetNotification(lastDoc)
     const json = await res.json()
     const data = json.data
-    console.log(json.hasMore)
+    console.log(json)
 
     if(!json.hasMore){
       setHasMore(false)
@@ -54,6 +65,7 @@ export default function Home() {
   }
 
   useEffect(() => {
+    // fetchData(null)
     const unSubcribe = onSnapshot(collection(db,'notifications'),async (snapshot) => {
       // setLastDoc(null)
       // setHasMore(true)
@@ -113,13 +125,13 @@ export default function Home() {
         {show && notify.length === 0 && <div className="spinner end"></div>}
       </button>
 
-      {show && notify.length > 0 && <NotificationList notify={notify} setNotify={setNotify}
+      {show && notify.length > 0 && <NotificationList notify={notify} setNotify={setNotify} router={router}
       lastNotifyRef={lastNotifyRef} ref={scrollContainer} setUnReadNotify={setUnReadNotify} loading={loading}/>}
     </>
   );
 }
 
-const generateToken = async (messaging) => {
+export const generateToken = async (messaging) => {
     const permission = await Notification.requestPermission()
 
     if(permission ==="granted"){
@@ -127,5 +139,16 @@ const generateToken = async (messaging) => {
         vapidKey:process.env.NEXT_PUBLIC_FIREBASE_VAPIDKEY
       })
       console.log(token)
+      return token
+
+      // await fetch(`https://notify-app-cj9d.onrender.com/notifications/device`,{
+      //   method:'POST',
+      //   headers:{
+      //     'Content-Type':'application/json'
+      //   },
+      //   body: JSON.stringify({
+      //     deviceToken: token
+      //   })
+      // })
     }
   }
